@@ -1,4 +1,4 @@
-package part1akka
+package actor.part1akka
 import akka.actor.ActorSystem
 
 object ActorIntro extends App {
