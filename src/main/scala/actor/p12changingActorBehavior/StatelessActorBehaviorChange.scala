@@ -1,7 +1,7 @@
 package actor.p12changingActorBehavior
 
-import actor.p12changingActorBehavior.StatefulFussyKid.FussyKid.{KidAccept, KidReject}
-import actor.p12changingActorBehavior.StatefulFussyKid.Mom.MomStart
+import actor.p12changingActorBehavior.StatelessActorBehaviorChange.StatelessFussyKid.{KidAccept, KidReject}
+import actor.p12changingActorBehavior.StatelessActorBehaviorChange.Mom.MomStart
 import akka.actor.{Actor, ActorRef, ActorSystem, Props}
 
 /**
@@ -11,36 +11,30 @@ import akka.actor.{Actor, ActorRef, ActorSystem, Props}
   *
   *  *** Stateful version ***
   */
-object StatefulFussyKid extends App {
+object StatelessActorBehaviorChange extends App {
 
-  object FussyKid{
+  object StatelessFussyKid{
     case object KidAccept
     case object KidReject
     val HAPPY = "happy"
     val SAD = "sad"
   }
-  class FussyKid extends Actor {
-    import FussyKid._
+  class StatelessFussyKid extends Actor {
+    import StatelessFussyKid._
     import Mom._
-    // internal state of the kid
-    var state = HAPPY // <- using state !!! this is shame !
-      override def receive: Receive = {
-        case Food(VEGETABLE) => state = SAD
-        case Food(CHOCOLATE) => state = HAPPY
-        case Ask(_) =>
-          if(state == HAPPY) sender() ! KidAccept
-          else sender() ! KidReject
-      }
+
+
+      override def receive: Receive = happyReceive
 
     def happyReceive : Receive = {
-      case Food(VEGETABLE) => // change my receive handler to sadReceive
+      case Food(VEGETABLE) => context.become(sadReceive) // change my receive handler to sadReceive
       case Food(CHOCOLATE) =>
       case Ask(_) => sender() ! KidAccept
     }
 
     def sadReceive : Receive = {
       case Food(VEGETABLE) => // stay sad
-      case Food(CHOCOLATE) => // change my receive handler to happyReceive
+      case Food(CHOCOLATE) => context.become(happyReceive)// change my receive handler to happyReceive
       case Ask(_) => sender() ! KidReject
     }
 
@@ -66,8 +60,16 @@ object StatefulFussyKid extends App {
   }
 
   val system = ActorSystem("changingActorBehaviorDemo")
-  val fussyKid = system.actorOf(Props[FussyKid], "myFussyKid")
+  val statelessFussyKid = system.actorOf(Props[StatelessFussyKid], "myFussyKid")
   val mom = system.actorOf(Props[Mom], "myMom")
 
-  mom ! MomStart(fussyKid)
+  mom ! MomStart(statelessFussyKid)
+
+  /* - process of causality
+     - kid receive Food(veg) -> kid will change the handler to sadReceive
+     - kid receive Ask(play?) -> kid reply with the sadReceive handler =>
+     mom receive KidReject
+
+
+   */
 }
