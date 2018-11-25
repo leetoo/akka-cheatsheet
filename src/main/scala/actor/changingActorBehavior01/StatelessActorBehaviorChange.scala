@@ -1,7 +1,7 @@
-package actor.p12changingActorBehavior
+package actor.changingActorBehavior01
 
-import actor.p12changingActorBehavior.StatelessActorBehaviorChange.StatelessFussyKid.{KidAccept, KidReject}
-import actor.p12changingActorBehavior.StatelessActorBehaviorChange.Mom.MomStart
+import actor.changingActorBehavior01.StatelessActorBehaviorChange.StatelessFussyKid.{KidAccept, KidReject}
+import actor.changingActorBehavior01.StatelessActorBehaviorChange.Mom.MomStart
 import akka.actor.{Actor, ActorRef, ActorSystem, Props}
 
 /**

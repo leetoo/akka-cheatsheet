@@ -1,7 +1,7 @@
-package actor.p12changingActorBehavior
+package actor.changingActorBehavior01
 
-import actor.p12changingActorBehavior.StatefulActorBehaviorChange.Mom.MomStartFirst
-import actor.p12changingActorBehavior.StatefulActorBehaviorChange.StatefulFussyKid.{KidAccept, KidReject}
+import actor.changingActorBehavior01.StatefulActorBehaviorChange.Mom.MomStartFirst
+import actor.changingActorBehavior01.StatefulActorBehaviorChange.StatefulFussyKid.{KidAccept, KidReject}
 import akka.actor.{Actor, ActorRef, ActorSystem, Props}
 
 /**
@@ -38,7 +38,7 @@ object StatefulActorBehaviorChange extends App {
     val CHOCOLATE = "chocolate"
   }
   class Mom extends Actor {
-    import actor.p12changingActorBehavior.StatefulActorBehaviorChange.Mom._
+    import actor.changingActorBehavior01.StatefulActorBehaviorChange.Mom._
     override def receive: Receive = {
       case MomStartFirst(kidRef) =>
         // test our interaction

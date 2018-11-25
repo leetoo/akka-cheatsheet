@@ -68,3 +68,7 @@ fabric.properties
 # Editor-based Rest Client
 .idea/httpRequests
 
+.gitignore
+.idea/
+src/main/scala/actor/changingActorBehavior01/
+src/test/
