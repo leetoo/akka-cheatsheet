@@ -70,5 +70,5 @@ fabric.properties
 
 .gitignore
 .idea/
-src/main/scala/actor/changingActorBehavior01/
+src/main/scala/actor/changingBehavior01/
 src/test/

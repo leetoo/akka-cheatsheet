@@ -1,7 +1,7 @@
-package actor.changingActorBehavior02
+package actor.changingBehavior02
 
-import actor.changingActorBehavior02.ActorBehaviorChangeUnBecomeStateless.MomUnbecome.MomStartStatelessUnbecome
-import actor.changingActorBehavior02.ActorBehaviorChangeUnBecomeStateless.StatelessFussyKid.{KidAccept, KidReject}
+import actor.changingBehavior02.ActorBehaviorChangeUnBecomeStateless.MomUnbecome.MomStartStatelessUnbecome
+import actor.changingBehavior02.ActorBehaviorChangeUnBecomeStateless.StatelessFussyKid.{KidAccept, KidReject}
 import akka.actor.{Actor, ActorRef, ActorSystem, Props}
 
 /**

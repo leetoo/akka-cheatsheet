@@ -1,4 +1,4 @@
-package actor.changingActorBehavior03
+package actor.changingBehavior03
 
 import actor.Counter.Counter.{Decrement, Increment, Print}
 import akka.actor.{Actor, ActorSystem, Props}
