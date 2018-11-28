@@ -71,4 +71,11 @@ fabric.properties
 .gitignore
 .idea/
 src/main/scala/actor/changingBehavior01/
-src/test/
+/testing-akka-actor/testing-akka-actor.iml
+/fault-tolerance/fault-tolerance.iml
+/scala-and-parallel-programming-recap/scala-and-parallel-programming-recap.iml
+akka-actor/
+fault-tolerance/
+scala-and-parallel-programming-recap/
+src/main/scala/fault_tolerance/
+testing-akka-actor/
