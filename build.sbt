@@ -10,3 +10,20 @@ libraryDependencies ++= Seq(
   "com.typesafe.akka" %% "akka-testkit" % "2.5.18" % Test,
   "org.scalatest" %% "scalatest" % "3.0.5" % "test"
 )
+
+
+
+val faultTolerance = (project in file("fault-tolerance"))
+  .settings(
+    libraryDependencies ++= Seq(
+      "com.typesafe.akka" %% "akka-actor" % "2.5.18",
+      "com.typesafe.akka" %% "akka-testkit" % "2.5.18" % Test,
+      "org.scalatest" %% "scalatest" % "3.0.5" % "test"
+    )
+
+  )
+
+val akka_recap = (project in file("."))
+  .aggregate(
+    faultTolerance
+  )
